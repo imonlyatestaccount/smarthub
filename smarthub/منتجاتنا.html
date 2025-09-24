@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>منتجاتنا</title>
+<style>
+body { font-family: Tahoma, Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; direction:rtl; }
+header { background:#2c3e50; color:white; padding:20px; text-align:center; }
+header h1 { margin:0; font-size:28px; }
+nav { background:#34495e; display:flex; justify-content:space-between; align-items:center; padding:10px 20px; position: sticky; top:0; z-index:10; }
+nav a { color:white; text-decoration:none; margin:0 12px; font-weight:bold; transition:0.3s; }
+nav a:hover { color:#f39c12; }
+#cartIcon { position: relative; cursor:pointer; }
+#cartIcon svg { width:28px; height:28px; fill:white; }
+#cartCount { position:absolute; top:-8px; right:-8px; background:red; color:white; font-size:12px; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+.container { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; padding:20px; }
+.product { background:white; border-radius:10px; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,0.2); text-align:center; transition:0.3s; }
+.product:hover { transform: translateY(-5px); box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+.product img { width:80%; height:180px; object-fit:cover; border-radius:8px; margin:0 auto; }
+.product h3 { margin:10px 0 5px; color:#2c3e50; }
+.product .details { font-size:14px; color:#555; margin:5px 0 10px; }
+.product .price { color:#e74c3c; font-size:18px; margin:10px 0; }
+
+.quantity { display:flex; justify-content:center; align-items:center; gap:5px; margin:10px 0; }
+.quantity button { width:28px; height:28px; border:none; background:#27ae60; color:white; font-size:18px; border-radius:4px; cursor:pointer; }
+.quantity span { width:30px; display:inline-block; text-align:center; font-weight:bold; }
+
+.btn { display:inline-block; padding:8px 15px; background:#27ae60; color:white; border-radius:5px; text-decoration:none; cursor:pointer; transition:0.3s; }
+.btn:hover { background:#219150; }
+
+footer { text-align:center; padding:15px; background:#2c3e50; color:white; margin-top:30px; font-size:14px; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>منتجاتنا</h1>
+<p>اختر من بين أفضل المنتجات المتاحة لدينا</p>
+</header>
+
+<nav>
+<div>
+<a href="http://www.smarthub.iceiy.com/index.html">الرئيسية</a>
+<a href="http://www.smarthub.iceiy.com/products.html">المنتجات</a>
+<a href="http://www.smarthub.iceiy.com/offers.html">العروض</a>
+<a href="http://www.smarthub.iceiy.com/contact.html">تواصل معنا</a>
+</div>
+<div id="cartIcon" onclick="window.location.href='cart.html'">
+<svg viewBox="0 0 24 24">
+<path d="M7 18c-1.104 0-1.99.896-1.99 2S5.896 22 7 22s2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-1.99.896-1.99 2S15.896 22 17 22s2-.896 2-2-.896-2-2-2zM7.16 14l-.2-2H17v2H7.16zM6.16 4l-.16-2h14.02l-1.5 8H6.16z"></path>
+</svg>
+<span id="cartCount">0</span>
+</div>
+</nav>
+
+<div class="container">
+<!-- منتجات -->
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/speaker.jpg" alt="سماعات بلوتوث">
+<h3>سماعات بلوتوث</h3>
+<p class="details">صوت عالي الجودة، تصميم مريح، بطارية حتى 12 ساعة.</p>
+<p class="price">150 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('سماعات بلوتوث',150,this)">إضافة إلى السلة</button>
+</div>
+
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/smart-watch.jpg" alt="ساعة ذكية">
+<h3>ساعة ذكية</h3>
+<p class="details">تتبع النشاط اليومي، مراقبة نبضات القلب، إشعارات الهاتف، بطارية 7 أيام.</p>
+<p class="price">250 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('ساعة ذكية',250,this)">إضافة إلى السلة</button>
+</div>
+
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/phone.jpg" alt="هاتف ذكي">
+<h3>هاتف ذكي</h3>
+<p class="details">شاشة كبيرة، كاميرا عالية الدقة، أداء سريع، بطارية طويلة الأمد.</p>
+<p class="price">1200 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('هاتف ذكي',1200,this)">إضافة إلى السلة</button>
+</div>
+
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/labtop.webp" alt="لابتوب حديث">
+<h3>لابتوب حديث</h3>
+<p class="details">أداء ممتاز، شاشة عالية الدقة، مناسب للعمل والدراسة.</p>
+<p class="price">3500 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('لابتوب حديث',3500,this)">إضافة إلى السلة</button>
+</div>
+
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/camera.jpg" alt="كاميرا رقمية">
+<h3>كاميرا رقمية</h3>
+<p class="details">صور وفيديوهات عالية الجودة، سهلة الاستخدام.</p>
+<p class="price">1800 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('كاميرا رقمية',1800,this)">إضافة إلى السلة</button>
+</div>
+
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/OIP.webp" alt="سماعات رأس">
+<h3>سماعات رأس</h3>
+<p class="details">صوت واضح وعزل ممتاز للضوضاء.</p>
+<p class="price">200 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('سماعات رأس',200,this)">إضافة إلى السلة</button>
+</div>
+
+<div class="product">
+<img src="%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%86%D8%A7_files/mouse.jpg" alt="ماوس لاسلكي">
+<h3>ماوس لاسلكي</h3>
+<p class="details">دقة عالية، تصميم مريح، سهل الحمل.</p>
+<p class="price">75 ريال</p>
+<div class="quantity">
+<button onclick="changeQuantity(this,-1)">-</button>
+<span>1</span>
+<button onclick="changeQuantity(this,1)">+</button>
+</div>
+<button class="btn" onclick="addToCart('ماوس لاسلكي',75,this)">إضافة إلى السلة</button>
+</div>
+
+</div>
+
+<footer>
+<p>جميع الحقوق محفوظة © 2025</p>
+</footer>
+
+<script>
+// تعديل الكمية
+function changeQuantity(btn, delta) {
+  const span = btn.parentElement.querySelector('span');
+  let value = parseInt(span.innerText);
+  value += delta;
+  if(value < 1) value = 1;
+  span.innerText = value;
+}
+
+// إضافة إلى السلة
+function addToCart(name, price, btn) {
+  const quantity = parseInt(btn.parentElement.querySelector('.quantity span').innerText);
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let item = cart.find(p => p.name === name);
+  if(item) { item.quantity += quantity; }
+  else { cart.push({name:name, price:price, quantity:quantity}); }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+  alert('تمت إضافة '+quantity+' '+name+' إلى السلة ✅');
+}
+
+// تحديث أيقونة السلة
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let total = cart.reduce((sum,p)=>sum+p.quantity,0);
+  document.getElementById('cartCount').innerText = total;
+}
+
+window.onload = updateCartCount;
+</script>
+
+
+
+</body></html>

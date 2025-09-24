@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>العروض الخاصة</title>
+<style>
+body { font-family: Tahoma, Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; direction:rtl; }
+header { background:#2c3e50; color:white; padding:20px; text-align:center; }
+nav { background:#34495e; display:flex; justify-content:space-between; align-items:center; padding:10px; position: sticky; top:0; }
+nav a { color:white; text-decoration:none; margin:0 10px; font-weight:bold; }
+nav a:hover { color:#f39c12; }
+#cartIcon { position: relative; cursor:pointer; }
+#cartIcon svg { width:28px; height:28px; fill:white; }
+#cartCount { position:absolute; top:-8px; right:-8px; background:red; color:white; font-size:12px; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+.container { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; padding:20px; }
+.offer { background:white; border-radius:10px; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,0.2); text-align:center; }
+.offer img { width:90%; max-height:180px; object-fit:contain; border-radius:8px; margin:0 auto; }
+.offer h3 { margin:10px 0; color:#2c3e50; }
+.details { font-size:14px; color:#555; margin:5px 0 10px; }
+.price { color:#e74c3c; font-size:18px; margin:10px 0; }
+.quantity { display:flex; justify-content:center; align-items:center; gap:5px; margin-bottom:10px; }
+.quantity button { padding:5px 10px; background:#27ae60; color:white; border:none; border-radius:5px; cursor:pointer; }
+.quantity input { width:40px; text-align:center; border-radius:5px; border:1px solid #ccc; }
+
+.btn { display:inline-block; padding:10px 15px; background:#27ae60; color:white; border-radius:5px; text-decoration:none; cursor:pointer; }
+.btn:hover { background:#219150; }
+footer { text-align:center; padding:15px; background:#2c3e50; color:white; margin-top:20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>العروض الخاصة</h1>
+  <p>استفد من التخفيضات الحالية على منتجاتنا!</p>
+</header>
+
+<nav>
+  <div>
+    <a href="http://www.smarthub.iceiy.com/index.html">الرئيسية</a>
+    <a href="http://www.smarthub.iceiy.com/products.html">المنتجات</a>
+    <a href="http://www.smarthub.iceiy.com/offers.html">العروض</a>
+    <a href="http://www.smarthub.iceiy.com/contact.html">تواصل معنا</a>
+  </div>
+  <div id="cartIcon" onclick="window.location.href='cart.html'">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.2 14l-.2-2h10v2H7.2zM6.2 4l-.2-2h14.2l-1.5 8H6.2z"></path>
+    </svg>
+    <span id="cartCount">0</span>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- عرض 1 -->
+  <div class="offer">
+    <img src="%D8%A7%D9%84%D8%B9%D8%B1%D9%88%D8%B6%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9_files/speaker.jpg" alt="سماعات بلوتوث">
+    <h3>سماعات بلوتوث - خصم 20%</h3>
+    <p class="details">صوت عالي الجودة مع تصميم مريح. العرض لفترة محدودة!</p>
+    <p class="price">120 ريال فقط</p>
+    <div class="quantity">
+      <button onclick="decrement(this)">-</button>
+      <input type="number" value="1" min="1">
+      <button onclick="increment(this)">+</button>
+    </div>
+    <button class="btn" onclick="addToCart('سماعات بلوتوث',120,this)">أضف إلى السلة</button>
+  </div>
+
+  <!-- عرض 2 -->
+  <div class="offer">
+    <img src="%D8%A7%D9%84%D8%B9%D8%B1%D9%88%D8%B6%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9_files/smart-watch.jpg" alt="ساعة ذكية">
+    <h3>ساعة ذكية - خصم 15%</h3>
+    <p class="details">تتبع النشاط، إشعارات الهاتف، بطارية 7 أيام.</p>
+    <p class="price">212 ريال فقط</p>
+    <div class="quantity">
+      <button onclick="decrement(this)">-</button>
+      <input type="number" value="1" min="1">
+      <button onclick="increment(this)">+</button>
+    </div>
+    <button class="btn" onclick="addToCart('ساعة ذكية',212,this)">أضف إلى السلة</button>
+  </div>
+</div>
+
+<footer>
+<p>جميع الحقوق محفوظة © 2025</p>
+</footer>
+
+<script>
+// تحديث السلة
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let total = cart.reduce((sum,item)=>sum+item.quantity,0);
+  document.getElementById("cartCount").innerText = total;
+}
+
+// أزرار الكمية
+function increment(btn){ const input = btn.previousElementSibling; input.value = parseInt(input.value)+1; }
+function decrement(btn){ const input = btn.nextElementSibling; if(input.value>1) input.value = parseInt(input.value)-1; }
+
+// إضافة منتج للسلة
+function addToCart(name, price, btn) {
+  const quantity = parseInt(btn.parentElement.querySelector('input').value);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let existing = cart.find(item => item.name === name);
+  if (existing) { existing.quantity += quantity; }
+  else { cart.push({name:name, price:price, quantity:quantity}); }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  alert("تمت إضافة " + name + " × " + quantity + " إلى السلة ✅");
+}
+
+window.onload = updateCartCount;
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>SmartHub - الرئيسية</title>
+<style>
+body { font-family: Tahoma, Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; direction:rtl; }
+header { background:#2c3e50; color:white; padding:20px; text-align:center; }
+.logo { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; }
+.logo svg { width:40px; height:40px; }
+.logo span { font-size:24px; font-weight:bold; color:white; }
+
+nav { background:#34495e; display:flex; justify-content:space-between; align-items:center; padding:10px; position: sticky; top:0; }
+nav a { color:white; text-decoration:none; margin:0 10px; font-weight:bold; }
+nav a:hover { color:#f39c12; }
+
+#cartIcon { position: relative; cursor:pointer; }
+#cartIcon svg { width:28px; height:28px; fill:white; }
+#cartCount { position:absolute; top:-8px; right:-8px; background:red; color:white; font-size:12px; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+/* سلايدر */
+.slider { position:relative; overflow:hidden; max-width:100%; height:250px; margin:20px auto; border-radius:10px; }
+.slides { display:flex; transition:0.5s; }
+.slides img { width:100%; height:250px; object-fit:contain; border-radius:10px; }
+
+/* ميزات */
+.features { display:flex; justify-content:center; gap:30px; padding:20px; background:#ecf0f1; flex-wrap:wrap; }
+.feature { text-align:center; }
+.feature svg { width:50px; height:50px; margin-bottom:5px; }
+
+.highlight { text-align:center; margin:30px 0; font-size:22px; color:#2c3e50; }
+
+footer { text-align:center; padding:15px; background:#2c3e50; color:white; margin-top:20px; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#27ae60"></circle>
+      <path d="M20 32 L28 40 L44 24" stroke="white" stroke-width="4" fill="none"></path>
+    </svg>
+    <span>SmartHub</span>
+  </div>
+  <p>أفضل المنتجات بأفضل الأسعار</p>
+</header>
+
+<nav>
+  <div>
+    <a href="http://www.smarthub.iceiy.com/index.html">الرئيسية</a>
+    <a href="http://www.smarthub.iceiy.com/products.html">المنتجات</a>
+    <a href="http://www.smarthub.iceiy.com/offers.html">العروض</a>
+    <a href="http://www.smarthub.iceiy.com/contact.html">تواصل معنا</a>
+  </div>
+  <div id="cartIcon" onclick="window.location.href='cart.html'">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.2 14l-.2-2h10v2H7.2zM6.2 4l-.2-2h14.2l-1.5 8H6.2z"></path>
+    </svg>
+    <span id="cartCount">0</span>
+  </div>
+</nav>
+
+<div class="slider">
+  <div class="slides" id="slides" style="transform: translateX(-100%);">
+    <img src="SmartHub%20-%20%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9_files/speaker.jpg" alt="سماعات بلوتوث">
+    <img src="SmartHub%20-%20%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9_files/smart-watch.jpg" alt="ساعة ذكية">
+    <img src="SmartHub%20-%20%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9_files/phone.jpg" alt="هاتف ذكي">
+  </div>
+</div>
+
+<div class="features">
+  <div class="feature">
+    <svg viewBox="0 0 64 64">
+      <path fill="#27ae60" d="M2 12h60v8H2zM12 24h40v36H12z"></path>
+    </svg>
+    <p>شحن مجاني</p>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30" stroke="#27ae60" stroke-width="4" fill="none"></circle>
+      <path fill="#27ae60" d="M32 16v16l12 6"></path>
+    </svg>
+    <p>دعم 24/7</p>
+  </div>
+  <div class="feature">
+    <svg viewBox="0 0 64 64">
+      <path fill="#27ae60" d="M32 2l28 16v28l-28 16-28-16V18z"></path>
+    </svg>
+    <p>ضمان المنتج</p>
+  </div>
+</div>
+
+<div class="highlight">تصفح منتجاتنا المميزة الآن!</div>
+
+<footer>
+  <p>جميع الحقوق محفوظة © 2025</p>
+</footer>
+
+<script>
+// سلايدر تلقائي
+let slideIndex = 0;
+const slides = document.getElementById('slides');
+function showSlides() {
+  slideIndex++;
+  if(slideIndex >= slides.children.length) slideIndex = 0;
+  slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+}
+setInterval(showSlides, 3000);
+
+// تحديث السلة
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let total = cart.reduce((sum,item)=>sum+item.quantity,0);
+  document.getElementById("cartCount").innerText = total;
+}
+window.onload = updateCartCount;
+</script>
+
+
+
+</body></html>
